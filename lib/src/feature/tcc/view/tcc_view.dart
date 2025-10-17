@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tcc/main.dart';
 import 'package:flutter_tcc/src/feature/tcc/view/resumo_view.dart';
 
 class TccView extends StatefulWidget {
@@ -12,6 +13,11 @@ class _TccViewState extends State<TccView> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    supabase.from('cursos')
+    .select()
+    .then((value){
+      print(value);
+    });
     return Scaffold(
       appBar: AppBar(title: const Text('TCC')),
       body: IndexedStack(
@@ -32,6 +38,7 @@ class _TccViewState extends State<TccView> {
           });
         },
         destinations: [
+          NavigationDestination(icon: Icon(Icons.school_outlined), label: 'Cursos', selectedIcon: Icon(Icons.school)),
           NavigationDestination(icon: Icon(Icons.subject_outlined), label: 'Resumo', selectedIcon: Icon(Icons.subject)),
           NavigationDestination(icon: Icon(Icons.list_outlined), label: 'Objetivos', selectedIcon: Icon(Icons.list)),
           NavigationDestination(icon: Icon(Icons.code_outlined), label: 'Desenvolvimento', selectedIcon: Icon(Icons.code)),
